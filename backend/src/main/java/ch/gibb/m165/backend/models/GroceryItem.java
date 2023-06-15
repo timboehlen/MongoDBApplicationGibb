@@ -2,11 +2,13 @@ package ch.gibb.m165.backend.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document
 public class GroceryItem {
 
     @Id
+    @MongoId
     private String id;
     private String name;
     private int quantity;
