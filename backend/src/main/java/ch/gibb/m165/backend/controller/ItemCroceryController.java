@@ -24,7 +24,6 @@ public class ItemCroceryController {
     @GetMapping("/items/{name}")
     GroceryItem newItem(@PathVariable String name) {
         GroceryItem test = new GroceryItem(random.nextInt(0,999999999), name, 1, "test");
-        GroceryItem save = itemRepository.save(test);
-        return save;
+        return itemRepository.save(test);
     }
 }
