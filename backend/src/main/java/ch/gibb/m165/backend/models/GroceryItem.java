@@ -5,29 +5,25 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class GroceryItem {
-    public GroceryItem() {
-    }
 
     @Id
-    private Integer id;
-
+    private String id;
     private String name;
     private int quantity;
     private String category;
 
-    public GroceryItem(Integer id, String name, int quantity, String category) {
-        super();
+    public GroceryItem(String id, String name, int quantity, String category) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.category = category;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

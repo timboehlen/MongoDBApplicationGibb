@@ -2,28 +2,28 @@ package ch.gibb.m165.backend.controller;
 
 import ch.gibb.m165.backend.models.GroceryItem;
 import ch.gibb.m165.backend.repositories.ItemRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import dtos.GroceryItemDTO;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
-@RestController
+@RestController()
+@RequestMapping("/items")
 public class ItemCroceryController {
     private final ItemRepository itemRepository;
-    private final Random random = new Random();
 
     public ItemCroceryController(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
-    @GetMapping("/items")
+    @GetMapping()
     List<GroceryItem> all() {
         return itemRepository.findAll();
     }
-    @GetMapping("/items/{name}")
-    GroceryItem newItem(@PathVariable String name) {
-        GroceryItem test = new GroceryItem(random.nextInt(0,999999999), name, 1, "test");
-        return itemRepository.save(test);
+    @PostMapping()
+    GroceryItem newItem(@RequestBody GroceryItemDTO item) {
+        GroceryItem groceryItem = new GroceryItem(UUID.randomUUID().toString(), item.name(), item.quantity(), item.category());
+        return itemRepository.save(groceryItem);
     }
 }
