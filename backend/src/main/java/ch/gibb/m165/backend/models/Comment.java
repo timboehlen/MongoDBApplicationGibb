@@ -11,11 +11,13 @@ public class Comment {
     private String id;
     private String content;
     private long createTime;
+    private Rating rating;
 
-    public Comment(String id, String content, long createTime) {
+    public Comment(String id, String content, long createTime, Rating rating) {
         this.id = id;
         this.content = content;
         this.createTime = createTime;
+        this.rating = rating;
     }
 
     public String getId() {
@@ -40,5 +42,13 @@ public class Comment {
 
     public void setCreateTime(long createTime) {
         this.createTime = createTime;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 }

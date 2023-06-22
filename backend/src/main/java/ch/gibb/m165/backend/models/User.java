@@ -17,8 +17,7 @@ public class User {
     private List<Comment> comments;
 
 
-
-    public User(String id, String name, String  email, List<Comment> comments) {
+    public User(String id, String name, String email, List<Comment> comments) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -37,7 +36,7 @@ public class User {
         return name;
     }
 
-    public void setName(String username) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -45,7 +44,9 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {this.email = email;}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public List<Comment> getComments() {
         return comments;

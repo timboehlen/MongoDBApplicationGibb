@@ -2,7 +2,9 @@ package ch.gibb.m165.backend.controller;
 
 import ch.gibb.m165.backend.dtos.CommentDTO;
 import ch.gibb.m165.backend.models.Comment;
+import ch.gibb.m165.backend.models.Rating;
 import ch.gibb.m165.backend.repositories.CommentRepository;
+import ch.gibb.m165.backend.repositories.RatingRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,9 +17,12 @@ import java.util.UUID;
 @RequestMapping("/comments")
 public class CommentController {
     private final CommentRepository commentRepository;
+    private final RatingRepository ratingRepository;
 
-    public CommentController(CommentRepository commentRepository) {
+    public CommentController(CommentRepository commentRepository,
+                             RatingRepository ratingRepository) {
         this.commentRepository = commentRepository;
+        this.ratingRepository = ratingRepository;
     }
 
     @GetMapping()
@@ -32,7 +37,8 @@ public class CommentController {
 
     @PostMapping()
     Comment newUser(@RequestBody CommentDTO commentDTO) {
-        Comment comment = new Comment(UUID.randomUUID().toString(), commentDTO.content(), new Date().getTime());
+        Comment comment = new Comment(UUID.randomUUID().toString(), commentDTO.content(), new Date().getTime(), new Rating(UUID.randomUUID().toString()));
+        ratingRepository.save(comment.getRating());
         return commentRepository.save(comment);
     }
 
